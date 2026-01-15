@@ -1,0 +1,7 @@
+[book]
+title = "Godot Addon Manager"
+authors = ["moonrailgun"]
+language = "en"
+
+[output.html]
+no-section-label = true
