@@ -6,16 +6,18 @@ A package manager for Godot addons.
 
 ### Quick Install (Recommended)
 
+The easiest way to install gdam is using the installation script, which automatically downloads the latest release for your platform.
+
 **macOS / Linux:**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/user/godot-addon-manager/main/scripts/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/moonrailgun/godot-addon-manager/master/scripts/install.sh | sh
 ```
 
 **Windows (PowerShell):**
 
 ```powershell
-irm https://raw.githubusercontent.com/user/godot-addon-manager/main/scripts/install.ps1 | iex
+irm https://raw.githubusercontent.com/moonrailgun/godot-addon-manager/master/scripts/install.ps1 | iex
 ```
 
 ### Install via Cargo
@@ -28,7 +30,7 @@ cargo install godot-addon-manager
 
 ### Manual Download
 
-Download the latest release from [GitHub Releases](https://github.com/user/godot-addon-manager/releases).
+Download the latest release from [GitHub Releases](https://github.com/moonrailgun/godot-addon-manager/releases).
 
 ## Usage
 

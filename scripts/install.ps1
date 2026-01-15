@@ -1,9 +1,9 @@
 # Godot Addon Manager (gdam) installer for Windows
-# Usage: irm https://raw.githubusercontent.com/user/godot-addon-manager/main/scripts/install.ps1 | iex
+# Usage: irm https://raw.githubusercontent.com/moonrailgun/godot-addon-manager/master/scripts/install.ps1 | iex
 
 $ErrorActionPreference = "Stop"
 
-$Repo = "user/godot-addon-manager"
+$Repo = "moonrailgun/godot-addon-manager"
 $BinaryName = "gdam"
 $InstallDir = if ($env:GDAM_INSTALL_DIR) { $env:GDAM_INSTALL_DIR } else { "$env:USERPROFILE\.local\bin" }
 

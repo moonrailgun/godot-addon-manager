@@ -1,10 +1,10 @@
 #!/bin/sh
 # Godot Addon Manager (gdam) installer
-# Usage: curl -fsSL https://raw.githubusercontent.com/user/godot-addon-manager/main/scripts/install.sh | sh
+# Usage: curl -fsSL https://raw.githubusercontent.com/moonrailgun/godot-addon-manager/master/scripts/install.sh | sh
 
 set -e
 
-REPO="user/godot-addon-manager"
+REPO="moonrailgun/godot-addon-manager"
 BINARY_NAME="gdam"
 INSTALL_DIR="${GDAM_INSTALL_DIR:-$HOME/.local/bin}"
 
