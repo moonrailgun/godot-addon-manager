@@ -64,3 +64,9 @@ addons:
 # Install locally for development
 cargo install --path .
 ```
+
+### Release new version
+
+```bash
+cargo release [patch|minor|major] --execute
+```
