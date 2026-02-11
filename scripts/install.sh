@@ -38,6 +38,9 @@ detect_platform() {
         Darwin)
             OS_NAME="macos"
             ;;
+        MINGW*|MSYS*|CYGWIN*|Windows_NT)
+            OS_NAME="windows"
+            ;;
         *)
             error "Unsupported operating system: $OS"
             ;;
@@ -76,9 +79,15 @@ get_latest_version() {
 }
 
 download_and_install() {
-    DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${VERSION}/${BINARY_NAME}-${PLATFORM}.tar.gz"
     TMP_DIR=$(mktemp -d)
-    ARCHIVE_PATH="${TMP_DIR}/${BINARY_NAME}.tar.gz"
+
+    if [ "$OS_NAME" = "windows" ]; then
+        DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${VERSION}/${BINARY_NAME}-${PLATFORM}.zip"
+        ARCHIVE_PATH="${TMP_DIR}/${BINARY_NAME}.zip"
+    else
+        DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${VERSION}/${BINARY_NAME}-${PLATFORM}.tar.gz"
+        ARCHIVE_PATH="${TMP_DIR}/${BINARY_NAME}.tar.gz"
+    fi
 
     info "Downloading from: $DOWNLOAD_URL"
 
@@ -89,14 +98,20 @@ download_and_install() {
     fi
 
     info "Extracting..."
-    tar -xzf "$ARCHIVE_PATH" -C "$TMP_DIR"
+    if [ "$OS_NAME" = "windows" ]; then
+        unzip -o "$ARCHIVE_PATH" -d "$TMP_DIR" || error "Extraction failed"
+        EXE_NAME="${BINARY_NAME}.exe"
+    else
+        tar -xzf "$ARCHIVE_PATH" -C "$TMP_DIR"
+        EXE_NAME="${BINARY_NAME}"
+    fi
 
     mkdir -p "$INSTALL_DIR"
-    mv "${TMP_DIR}/${BINARY_NAME}" "${INSTALL_DIR}/${BINARY_NAME}"
-    chmod +x "${INSTALL_DIR}/${BINARY_NAME}"
+    mv "${TMP_DIR}/${EXE_NAME}" "${INSTALL_DIR}/${EXE_NAME}"
+    chmod +x "${INSTALL_DIR}/${EXE_NAME}"
 
     rm -rf "$TMP_DIR"
-    info "Installed to: ${INSTALL_DIR}/${BINARY_NAME}"
+    info "Installed to: ${INSTALL_DIR}/${EXE_NAME}"
 }
 
 check_path() {
